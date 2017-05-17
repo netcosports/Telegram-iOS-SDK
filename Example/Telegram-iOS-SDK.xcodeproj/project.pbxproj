@@ -20,7 +20,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		A588A2BC979E9B8B0173E46C /* Pods_Telegram_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90BC0D40BB8CCB68EE9CB12 /* Pods_Telegram_iOS_SDK.framework */; };
-		A599C66B1ECC54BD008999D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A599C6691ECC54BD008999D5 /* Images.xcassets */; };
+		A599C8311ECC5D74008999D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A599C82E1ECC5D74008999D5 /* Images.xcassets */; };
+		A599C8321ECC5D74008999D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A599C8301ECC5D74008999D5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,8 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		909EB0BF33AA8EDC757705B8 /* Pods-Telegram-iOS-SDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Telegram-iOS-SDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Telegram-iOS-SDK/Pods-Telegram-iOS-SDK.debug.xcconfig"; sourceTree = "<group>"; };
-		A599C6691ECC54BD008999D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A599C82E1ECC5D74008999D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A599C8301ECC5D74008999D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B57853F0A5343EC323D474A4 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B57CC94F36ECA676F6CFD854 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		CE777EEE7786AA61C88D2F53 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +174,7 @@
 		6003F593195388D20070C39A /* Telegram-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				A599C6681ECC54BD008999D5 /* Misc */,
+				A599C82D1ECC5D74008999D5 /* Resources */,
 				53C678301AB87E0200C55DF0 /* Sources */,
 			);
 			path = "Telegram-iOS-SDK";
@@ -218,18 +220,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A599C6681ECC54BD008999D5 /* Misc */ = {
+		A599C82D1ECC5D74008999D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A599C6691ECC54BD008999D5 /* Images.xcassets */,
-				A599C66A1ECC54BD008999D5 /* Interface */,
+				A599C82E1ECC5D74008999D5 /* Images.xcassets */,
+				A599C82F1ECC5D74008999D5 /* Interface */,
 			);
-			path = Misc;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		A599C66A1ECC54BD008999D5 /* Interface */ = {
+		A599C82F1ECC5D74008999D5 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				A599C8301ECC5D74008999D5 /* Main.storyboard */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -317,7 +320,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A599C66B1ECC54BD008999D5 /* Images.xcassets in Resources */,
+				A599C8311ECC5D74008999D5 /* Images.xcassets in Resources */,
+				A599C8321ECC5D74008999D5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
