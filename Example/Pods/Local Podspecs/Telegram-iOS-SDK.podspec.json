@@ -1,8 +1,8 @@
 {
   "name": "Telegram-iOS-SDK",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "summary": "Telegram-iOS-SDK. Source code of Telegram 2.8 ported to pods",
-  "description": "                       arm64 compatible. Work in progress.\n                       Feel free to contribute.\n",
+  "description": "arm64 compatible. Work in progress.\nFeel free to contribute.",
   "homepage": "https://github.com/batkov/Telegram-iOS-SDK",
   "license": "GPLv2",
   "authors": {
@@ -10,11 +10,11 @@
   },
   "source": {
     "git": "https://github.com/batkov/Telegram-iOS-SDK.git",
-    "tag": "0.0.4"
+    "tag": "0.0.5"
   },
   "social_media_url": "https://twitter.com/batkov111",
   "platforms": {
-    "ios": "7.0"
+    "ios": "6.0"
   },
   "requires_arc": "Pod/Classes/ARC/**/*",
   "xcconfig": {
@@ -24,7 +24,7 @@
   "compiler_flags": "-Wall",
   "resource_bundles": {
     "Telegram-iOS-SDK": [
-      "Pod/Assets/*"
+      "Pod/Assets/**/*"
     ]
   },
   "frameworks": [

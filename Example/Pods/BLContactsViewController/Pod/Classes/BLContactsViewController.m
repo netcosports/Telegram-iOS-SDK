@@ -23,7 +23,7 @@ NSString *const BLContactsDefaultCellIdentifier = @"BLContactsDefaultCellIdentif
 }
 + (UINavigationController *) navigationControllerWithContactsControllerWithDelegate:(id <BLContactsViewControllerDelegate>) delegate {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:[self storyboardName]
-                                                          bundle:nil];
+                                                          bundle:[NSBundle bundleForClass:[BLContactsViewController class]]];
     UINavigationController * navController = [storyboard instantiateInitialViewController];
     BLContactsViewController * controller = (BLContactsViewController *) navController.viewControllers[0];
     controller.contactsDelegate = delegate;
@@ -32,7 +32,7 @@ NSString *const BLContactsDefaultCellIdentifier = @"BLContactsDefaultCellIdentif
 
 + (instancetype) contactsControllerWithDelegate:(id <BLContactsViewControllerDelegate>) delegate {
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:[self storyboardName]
-                                                          bundle:nil];
+                                                          bundle:[NSBundle bundleForClass:[BLContactsViewController class]]];
     BLContactsViewController * controller = (BLContactsViewController *) [storyboard instantiateViewControllerWithIdentifier:@"BLContactsViewController"];
     controller.contactsDelegate = delegate;
     return controller;

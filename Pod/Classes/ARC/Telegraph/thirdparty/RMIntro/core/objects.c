@@ -19,6 +19,8 @@
 #include "platform_log.h"
 #include <math.h>
 #include "animations.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 
 static TextureProgram texture_program;

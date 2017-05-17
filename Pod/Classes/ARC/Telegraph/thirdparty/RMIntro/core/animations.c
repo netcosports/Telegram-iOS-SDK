@@ -16,6 +16,7 @@
 #include "platform_log.h"
 #include "rngs.h"
 #include "timing.h"
+#include <stdio.h>
 
 static const vec4 black_color = {0,0,0, 1.0f};
 static const vec4 white_color = {1,1,1, 1.0f};

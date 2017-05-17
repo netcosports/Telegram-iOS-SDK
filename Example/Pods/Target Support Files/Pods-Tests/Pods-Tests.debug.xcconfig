@@ -1,9 +1,9 @@
-CLANG_CXX_LANGUAGE_STANDARD = c++11
-CLANG_CXX_LIBRARY = libc++
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/BLContactsViewController" "$PODS_CONFIGURATION_BUILD_DIR/BLPhoneFormat" "$PODS_CONFIGURATION_BUILD_DIR/Telegram-iOS-SDK" "$PODS_CONFIGURATION_BUILD_DIR/pop"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/BLContactsViewController" "${PODS_ROOT}/Headers/Public/BLPhoneFormat" "${PODS_ROOT}/Headers/Public/Telegram-iOS-SDK" "${PODS_ROOT}/Headers/Public/pop"
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/../../Pod/Libs" "$(PODS_ROOT)/../../Pod/Libs"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/BLContactsViewController" -isystem "${PODS_ROOT}/Headers/Public/BLPhoneFormat" -isystem "${PODS_ROOT}/Headers/Public/Telegram-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/pop"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-Tests-BLContactsViewController" -l"Pods-Tests-BLPhoneFormat" -l"Pods-Tests-Telegram-iOS-SDK" -l"Pods-Tests-pop" -l"c++" -l"crypto" -l"opus" -l"stdc++" -l"z" -framework "AddressBook" -framework "AddressBookUI" -framework "CoreLocation"
-OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/BLContactsViewController/BLContactsViewController.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/BLPhoneFormat/BLPhoneFormat.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Telegram-iOS-SDK/Telegram_iOS_SDK.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/pop/pop.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"stdc++" -framework "BLContactsViewController" -framework "BLPhoneFormat" -framework "Telegram_iOS_SDK" -framework "pop"
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
