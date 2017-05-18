@@ -1,1 +1,0 @@
-../../../../../Pod/Classes/ARC/Telegraph/legacy/TelegraphKit/TGImageDataSource.h

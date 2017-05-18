@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471F4B32D92B9E73DEF3E98A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE327BBD16362C481544965E /* libPods-Tests.a */; };
 		5303F8F31AB9A06500A5BB54 /* TALoginPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5303F8F21AB9A06500A5BB54 /* TALoginPhoneViewController.m */; };
 		53C6783C1AB87E0200C55DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C678351AB87E0200C55DF0 /* main.m */; };
 		53C6783E1AB87E0200C55DF0 /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C678391AB87E0200C55DF0 /* TAAppDelegate.m */; };
-		590724F0D5D317C7A8A6DB5A /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9E22813380D3E8024562AE /* Pods_Tests.framework */; };
+		5B543BD93AC4C951E25633AF /* libPods-Telegram-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63755EA3CD7CABE5D654EB0F /* libPods-Telegram-iOS-SDK.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -19,7 +20,6 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		A588A2BC979E9B8B0173E46C /* Pods_Telegram_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90BC0D40BB8CCB68EE9CB12 /* Pods_Telegram_iOS_SDK.framework */; };
 		A599C8311ECC5D74008999D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A599C82E1ECC5D74008999D5 /* Images.xcassets */; };
 		A599C8321ECC5D74008999D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A599C8301ECC5D74008999D5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -36,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		1C102C91AEFC0F4DBF451145 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4E9E22813380D3E8024562AE /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5303F8F11AB9A06500A5BB54 /* TALoginPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TALoginPhoneViewController.h; sourceTree = "<group>"; };
 		5303F8F21AB9A06500A5BB54 /* TALoginPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TALoginPhoneViewController.m; sourceTree = "<group>"; };
 		53C678351AB87E0200C55DF0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,15 +53,16 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		63755EA3CD7CABE5D654EB0F /* libPods-Telegram-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Telegram-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		909EB0BF33AA8EDC757705B8 /* Pods-Telegram-iOS-SDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Telegram-iOS-SDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Telegram-iOS-SDK/Pods-Telegram-iOS-SDK.debug.xcconfig"; sourceTree = "<group>"; };
 		A599C82E1ECC5D74008999D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A599C8301ECC5D74008999D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B57853F0A5343EC323D474A4 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B57CC94F36ECA676F6CFD854 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		CE777EEE7786AA61C88D2F53 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		DE327BBD16362C481544965E /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E905388B286F39421B6DF72E /* Pods-Telegram-iOS-SDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Telegram-iOS-SDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-Telegram-iOS-SDK/Pods-Telegram-iOS-SDK.release.xcconfig"; sourceTree = "<group>"; };
 		F22D8FF893B4B1EC783C8349 /* Telegram-iOS-SDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "Telegram-iOS-SDK.podspec"; path = "../Telegram-iOS-SDK.podspec"; sourceTree = "<group>"; };
-		F90BC0D40BB8CCB68EE9CB12 /* Pods_Telegram_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Telegram_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				A588A2BC979E9B8B0173E46C /* Pods_Telegram_iOS_SDK.framework in Frameworks */,
+				5B543BD93AC4C951E25633AF /* libPods-Telegram-iOS-SDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +84,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				590724F0D5D317C7A8A6DB5A /* Pods_Tests.framework in Frameworks */,
+				471F4B32D92B9E73DEF3E98A /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,8 +165,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				F90BC0D40BB8CCB68EE9CB12 /* Pods_Telegram_iOS_SDK.framework */,
-				4E9E22813380D3E8024562AE /* Pods_Tests.framework */,
+				63755EA3CD7CABE5D654EB0F /* libPods-Telegram-iOS-SDK.a */,
+				DE327BBD16362C481544965E /* libPods-Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

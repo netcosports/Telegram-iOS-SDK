@@ -2,24 +2,24 @@ PODS:
   - BLContactsViewController (0.1.5)
   - BLPhoneFormat (0.3.3)
   - pop (1.0.9)
-  - Telegram-iOS-SDK (0.0.5):
+  - TelegramSDK (0.0.1):
     - BLContactsViewController
     - BLPhoneFormat
     - pop
 
 DEPENDENCIES:
-  - Telegram-iOS-SDK (from `../`)
+  - TelegramSDK (from `../`)
 
 EXTERNAL SOURCES:
-  Telegram-iOS-SDK:
+  TelegramSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
   BLContactsViewController: bd831242afe1e3f9b2c1a72c4b9d615feef94def
   BLPhoneFormat: cb1cad0532d90ce2c56ad1758628765e2018ca62
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  Telegram-iOS-SDK: d7506cbef306ac463147a88b8ee12537c7df4442
+  TelegramSDK: 5455ee4c7f1b54edcf01d58e42e6fb97f720028a
 
-PODFILE CHECKSUM: ca2983d8da43d0495844bf21fd75a931a35ce17f
+PODFILE CHECKSUM: 9a9df5a83df89a8b8ed1861ddbfaa6913365f964
 
 COCOAPODS: 1.2.1

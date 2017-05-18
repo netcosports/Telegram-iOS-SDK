@@ -1,1 +1,0 @@
-../../../../../Pod/Classes/ARC/Telegraph/Telegraph/TGRegularCheckCollectionItem.h

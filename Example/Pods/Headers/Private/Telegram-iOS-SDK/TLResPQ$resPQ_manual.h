@@ -1,1 +1,0 @@
-../../../../../Pod/Classes/ARC/Telegraph/legacy/TL/TLResPQ$resPQ_manual.h
