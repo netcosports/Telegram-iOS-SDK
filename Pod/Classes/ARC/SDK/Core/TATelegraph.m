@@ -15,19 +15,20 @@
 #import "ASCommon.h"
 @interface TATelegraph ()
 
--(instancetype)initWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash datacenterAddress:(MTDatacenterAddress *)datacenterAddress;
-@property (nonatomic, strong) TGTelegraph * telegraph;
+//-(instancetype)initWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash datacenterAddress:(MTDatacenterAddress *)datacenterAddress;
+@property (nonatomic, strong) TGTelegraph *telegraph;
 @end
 
 @implementation TATelegraph
 static TATelegraph *sharedTelegraph;
 
+- (void)checkPhone:(NSString *)phone watcher:(id<ASWatcher>)watcher
+{
 
-+ (void) sendCodeToPhone:(NSString *) phone watcher:(id<ASWatcher>)watcher  {
-    [[TATelegraph sharedTelegraph] sendCodeToPhone:phone watcher:watcher];
 }
 
-- (void) sendCodeToPhone:(NSString *) phone watcher:(id<ASWatcher>)watcher {
+- (void)sendCodeToPhone:(NSString *)phone watcher:(id<ASWatcher>)watcher
+{
     [ActionStageInstance() requestActor:[NSString stringWithFormat:@"/tg/service/auth/sendCode/(%d)", 0]
                                 options:[NSDictionary dictionaryWithObjectsAndKeys:phone, @"phoneNumber", nil]
                                 watcher:watcher];
@@ -37,7 +38,8 @@ static TATelegraph *sharedTelegraph;
 
 #pragma mark - Initialization
 
-+ (void) startWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash {
++ (void)startWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash
+{
     NSAssert([apiID length], @"You need to provide non-empty apiID");
     NSAssert([apiHash length], @"You need to provide non-empty apiHash");
     //Dispatching it once.
@@ -51,7 +53,8 @@ static TATelegraph *sharedTelegraph;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
--(instancetype)initWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash {
+- (instancetype)initWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash
+{
     if (self = [super init]) {
         self.telegraph = [[TGTelegraph alloc] init];
         [self.telegraph setApiId:apiID];
@@ -61,7 +64,8 @@ static TATelegraph *sharedTelegraph;
 }
 #pragma clang diagnostic pop
 
-+ (instancetype) sharedTelegraph {
++ (instancetype) sharedTelegraph
+{
     NSAssert(sharedTelegraph, @"You need to call startWithApiId:apiHash:datacenterAddress: before start using telegraph");
     return sharedTelegraph;
 }

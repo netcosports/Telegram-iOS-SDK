@@ -34,13 +34,21 @@
  @abstract Should be called before any interaction with TATelegraph is started
 Note that calling startWithApiId:apiHash: second time in App lifecycle won't work
  */
-+ (void) startWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash;
++ (void)startWithApiId:(NSString *)apiID apiHash:(NSString *)apiHash;
 
-+ (instancetype) sharedTelegraph;
++ (instancetype)sharedTelegraph;
 
+- (void)checkPhone:(NSString *)phone
+           watcher:(id<ASWatcher>)watcher;
 
-- (void) sendCodeToPhone:(NSString *) phone watcher:(id<ASWatcher>)watcher;
-+ (void) sendCodeToPhone:(NSString *) phone watcher:(id<ASWatcher>)watcher;
+- (void)sendCodeToPhone:(NSString *)phone
+                watcher:(id<ASWatcher>)watcher;
+
+- (void)signInWithPhone:(NSString *)phone
+          phoneCodeHash:(NSString *)phoneCodeHash
+              phoneCode:(NSString *)phoneCode
+                watcher:(id<ASWatcher>)watcher;
+
 
 
 //@final. Must not be used for subclassing.
