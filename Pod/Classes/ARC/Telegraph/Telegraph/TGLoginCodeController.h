@@ -12,9 +12,18 @@
 
 #import "TGNavigationController.h"
 
+@class TGLoginCodeController;
+
+@protocol TGLoginCodeControllerDelegate <NSObject>
+
+- (void)loginCodeController:(TGLoginCodeController *)loginCodeController didLoginWithObject:(id)object;
+
+@end
+
 @interface TGLoginCodeController : TGViewController <ASWatcher, TGNavigationControllerItem>
 
 @property (nonatomic, strong) ASHandle *actionHandle;
+@property (nonatomic, weak) id<TGLoginCodeControllerDelegate> delegate;
 
 - (id)initWithShowKeyboard:(bool)showKeyboard phoneNumber:(NSString *)phoneNumber phoneCodeHash:(NSString *)phoneCodeHash phoneTimeout:(NSTimeInterval)phoneTimeout messageSentToTelegram:(bool)messageSentToTelegram;
 

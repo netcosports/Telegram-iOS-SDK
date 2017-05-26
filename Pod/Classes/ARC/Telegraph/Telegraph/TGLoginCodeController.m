@@ -685,8 +685,13 @@
         {
             self.inProgress = false;
             
-            if ([((SGraphObjectNode *)resource).object boolValue])
-                [TGAppDelegateInstance presentMainController];
+            if ([((SGraphObjectNode *)resource).object boolValue]) {
+                if (self.delegate) {
+                    [self.delegate loginCodeController:self didLoginWithObject:nil];
+                } else {
+                    [TGAppDelegateInstance presentMainController];
+                }
+            }
             else
             {
                 if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
@@ -707,8 +712,13 @@
             {
                 self.inProgress = false;
                 
-                if (activated)
-                    [TGAppDelegateInstance presentMainController];
+                if (activated) {
+                    if (self.delegate) {
+                        [self.delegate loginCodeController:self didLoginWithObject:nil];
+                    } else {
+                        [TGAppDelegateInstance presentMainController];
+                    }
+                }
                 else
                 {
                     if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
