@@ -9,9 +9,11 @@
 #import "TGViewController.h"
 
 #import "ActionStage.h"
+#import "TGLoginCodeController.h"
 
 @interface TGLoginPhoneController : TGViewController <ASWatcher>
 
+@property (nonatomic, weak) id<TGLoginCodeControllerDelegate> loginCodeDelegate;
 @property (nonatomic, strong) ASHandle *actionHandle;
 
 - (void)setPhoneNumber:(NSString *)phoneNumber;
