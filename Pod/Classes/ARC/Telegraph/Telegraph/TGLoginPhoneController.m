@@ -877,7 +877,7 @@
     countriesController.watcherHandle = _actionHandle;
     
     TGNavigationController *navigationController = [TGNavigationController navigationControllerWithRootController:countriesController];
-    [self presentViewController:navigationController animated:true completion:nil];
+    [self.view.window.rootViewController presentViewController:navigationController animated:true completion:nil];
 }
 
 #pragma mark -
@@ -924,8 +924,6 @@
 {
     if ([action isEqualToString:@"countryCodeSelected"])
     {
-        [self dismissViewControllerAnimated:true completion:nil];
-        
         if ([options objectForKey:@"code"] != nil)
         {
             //[_countryButton setTitleColor:UIColorRGB(0xf0f0f0) forState:UIControlStateNormal];

@@ -406,9 +406,7 @@ static NSArray *countryCodes()
         {
             [watcher actionStageActionRequested:@"countryCodeSelected" options:[NSDictionary dictionaryWithObjectsAndKeys:[item objectAtIndex:0], @"code", [item objectAtIndex:2], @"name", nil]];
         }
-        
-        if (watcher == nil)
-            [self.presentingViewController dismissViewControllerAnimated:true completion:nil];
+        [self.presentingViewController dismissViewControllerAnimated:true completion:nil];
     }
 }
 
@@ -502,8 +500,7 @@ static NSArray *countryCodes()
         [watcher actionStageActionRequested:@"countryCodeSelected" options:[NSDictionary dictionary]];
     }
     
-    if (watcher == nil)
-        [self.presentingViewController dismissViewControllerAnimated:true completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
