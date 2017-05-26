@@ -15,11 +15,11 @@ Pod::Spec.new do |s|
                        arm64 compatible. Work in progress.
                        Feel free to contribute.
                        DESC
-  s.homepage         = "https://github.com/SergeyDik/Telegram-iOS-SDK"
+  s.homepage         = "https://github.com/netcosports/Telegram-iOS-SDK"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'GPLv2'
   s.author           = { "Hariton Batkov" => "batkov@i.ua" }
-  s.source           = { :git => "https://github.com/SergeyDik/Telegram-iOS-SDK.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/netcosports/Telegram-iOS-SDK.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/batkov111'
 
   s.platform     = :ios, '6.0'

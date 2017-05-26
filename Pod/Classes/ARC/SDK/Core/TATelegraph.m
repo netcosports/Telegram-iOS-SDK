@@ -33,8 +33,15 @@ static TATelegraph *sharedTelegraph;
                                 options:[NSDictionary dictionaryWithObjectsAndKeys:phone, @"phoneNumber", nil]
                                 watcher:watcher];
 }
-#pragma mark - Getters
 
+
+- (void)signInWithPhone:(NSString *)phone
+          phoneCodeHash:(NSString *)phoneCodeHash
+              phoneCode:(NSString *)phoneCode
+                watcher:(id<ASWatcher>)watcher
+{
+
+}
 
 #pragma mark - Initialization
 

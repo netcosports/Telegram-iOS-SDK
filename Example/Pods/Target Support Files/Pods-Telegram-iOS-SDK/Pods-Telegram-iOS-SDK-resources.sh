@@ -82,12 +82,12 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/BLContactsViewController/BLContactsViewController.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/BLPhoneFormat/BLPhoneFormat.bundle"
-  install_resource "$PODS_CONFIGURATION_BUILD_DIR/TelegramSDK/Telegram-iOS-SDK.bundle"
+  install_resource "$PODS_CONFIGURATION_BUILD_DIR/Telegram-iOS-SDK/Telegram-iOS-SDK.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/BLContactsViewController/BLContactsViewController.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/BLPhoneFormat/BLPhoneFormat.bundle"
-  install_resource "$PODS_CONFIGURATION_BUILD_DIR/TelegramSDK/Telegram-iOS-SDK.bundle"
+  install_resource "$PODS_CONFIGURATION_BUILD_DIR/Telegram-iOS-SDK/Telegram-iOS-SDK.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

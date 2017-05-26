@@ -422,7 +422,7 @@ Public License instead of this License.
 			<key>License</key>
 			<string>GPLv2</string>
 			<key>Title</key>
-			<string>TelegramSDK</string>
+			<string>Telegram-iOS-SDK</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

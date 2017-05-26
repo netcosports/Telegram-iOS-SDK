@@ -52,8 +52,8 @@
 }
 - (IBAction)sendCodeButtonTapped:(id)sender {
     if ([self.formattingManager.formattedPhone length])
-        [TATelegraph sendCodeToPhone:self.formattingManager.formattedPhone
-                             watcher:self];
+        [[TATelegraph sharedTelegraph] sendCodeToPhone:self.formattingManager.formattedPhone
+                                               watcher:self];
 }
 
 #pragma mark - TAPhoneFormattingDelegate

@@ -1,9 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Telegram-iOS-SDK' do
-  pod "TelegramSDK", :path => "../"
+  pod "Telegram-iOS-SDK", :path => "../"
 end
 
 target 'Tests' do
-  pod "TelegramSDK", :path => "../"
+  pod "Telegram-iOS-SDK", :path => "../"
 end
