@@ -237,7 +237,7 @@
     _timeoutLabel.textAlignment = NSTextAlignmentCenter;
     _timeoutLabel.contentMode = UIViewContentModeCenter;
     _timeoutLabel.numberOfLines = 0;
-    _timeoutLabel.text = [TGStringUtils stringWithLocalizedNumberCharacters:[[NSString alloc] initWithFormat:TGLocalized(@"Login.CallRequestState1"), 1, 0]];
+    _timeoutLabel.text = [TGStringUtils stringWithLocalizedNumberCharacters:[[NSString alloc] initWithFormat:[self callRequestStateString], 1, 0]];
     _timeoutLabel.backgroundColor = [UIColor clearColor];
     [_timeoutLabel sizeToFit];
     [self.view addSubview:_timeoutLabel];
@@ -320,6 +320,10 @@
     _callSentLabel.frame = CGRectMake((int)((screenSize.width - _callSentLabel.frame.size.width) / 2), labelAnchor, _callSentLabel.frame.size.width, _callSentLabel.frame.size.height);
     
     [self updateInterface:self.interfaceOrientation];
+}
+
+- (NSString *)callRequestStateString {
+    return [[NSMutableString stringWithString:TGLocalized(@"Login.CallRequestState1")] stringByAppendingString:@"%d:%.2d"];
 }
 
 - (void)callSentTapGesture:(UITapGestureRecognizer *)recognizer
@@ -427,7 +431,7 @@
     if (remainingTime < 0)
         remainingTime = 0;
     
-    _timeoutLabel.text = [TGStringUtils stringWithLocalizedNumberCharacters:[NSString stringWithFormat:TGLocalized(@"Login.CallRequestState1"), ((int)remainingTime) / 60, ((int)remainingTime) % 60]];
+    _timeoutLabel.text = [TGStringUtils stringWithLocalizedNumberCharacters:[NSString stringWithFormat: [self callRequestStateString], ((int)remainingTime) / 60, ((int)remainingTime) % 60]];
     
     if (remainingTime <= 0)
     {
