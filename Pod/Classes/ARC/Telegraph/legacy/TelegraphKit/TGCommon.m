@@ -226,6 +226,7 @@ void TGResetLocalization()
 
 NSString *TGLocalized(NSString *s)
 {
+    return NSLocalizedString(s, @"");
     static NSString *untranslatedString = nil;
     
     static dispatch_once_t onceToken1;
