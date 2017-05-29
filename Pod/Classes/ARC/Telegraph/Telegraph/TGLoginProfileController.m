@@ -608,8 +608,8 @@
             
             [self.view endEditing:true];
             
-            [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
-            
+//            [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
+
             UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             imagePicker.sourceType = buttonIndex == 0 ? UIImagePickerControllerSourceTypeCamera : UIImagePickerControllerSourceTypePhotoLibrary;
             imagePicker.allowsEditing = true;
@@ -624,8 +624,8 @@
 {
     [self dismissViewControllerAnimated:true completion:nil];
     
-    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
-    
+//    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
+
     CGRect cropRect = [[info objectForKey:UIImagePickerControllerCropRect] CGRectValue];
     if (ABS(cropRect.size.width - cropRect.size.height) > FLT_EPSILON)
     {
@@ -664,7 +664,7 @@
 {
     [self dismissViewControllerAnimated:true completion:nil];
     
-    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
+//    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
 }
 
 #pragma mark -

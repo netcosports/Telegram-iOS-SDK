@@ -398,8 +398,8 @@
             imagePicker.allowsEditing = true;
             imagePicker.delegate = self;
             
-            [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
-            
+//            [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
+
             [imageViewController presentViewController:imagePicker animated:true completion:nil];
             
             [imageViewController acquireRotationLock];
@@ -492,8 +492,8 @@
     
     [imageViewController dismissViewControllerAnimated:true completion:nil];
     
-    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
-    
+//    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
+
     [imageViewController releaseRotationLock];
 }
 
@@ -514,7 +514,7 @@
             [TGHacks setApplicationStatusBarAlpha:1.0f];
         });
         
-        [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
+//        [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
     }];
 }
 
