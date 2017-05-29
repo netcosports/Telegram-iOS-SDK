@@ -622,7 +622,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)__unused picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [picker dismissViewControllerAnimated:true completion:nil];
     
 //    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:false];
 
@@ -662,7 +662,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)__unused picker
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [picker dismissViewControllerAnimated:true completion:nil];
     
 //    [(TGApplication *)[UIApplication sharedApplication] setProcessStatusBarHiddenRequests:true];
 }
