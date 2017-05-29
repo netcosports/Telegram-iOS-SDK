@@ -615,7 +615,7 @@
             imagePicker.allowsEditing = true;
             imagePicker.delegate = self;
             
-            [self presentViewController:imagePicker animated:true completion:nil];
+            [self.view.window.rootViewController presentViewController:imagePicker animated:true completion:nil];
         }
     }
 }
