@@ -43,7 +43,7 @@
 #define TGAvatarActionSheetTag ((int)0xF3AEE8CC)
 #define TGImageSourceActionSheetTag ((int)0x34281CB0)
 
-@interface TGLoginProfileController () <UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface TGLoginProfileController () <UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, TGLoginInactiveUserControllerDelegate>
 {
     bool _dismissing;
     
@@ -116,6 +116,11 @@
     
     [_actionHandle reset];
     [ActionStageInstance() removeWatcher:self];
+}
+
+- (void)loginInactiveUserController:(TGLoginInactiveUserController *)loginInactiveUserController didLoginWithObject:(id)object
+{
+    [self.delegate loginProfileController:self didLoginWithObject:object];
 }
 
 - (bool)shouldBeRemovedFromNavigationAfterHiding
@@ -705,7 +710,11 @@
                 {
                     self.inProgress = false;
                     
-                    [TGAppDelegateInstance presentMainController];
+                    if (self.delegate) {
+                        [self.delegate loginProfileController:self didLoginWithObject:nil];
+                    } else {
+                        [TGAppDelegateInstance presentMainController];
+                    }
                 }
             }
             else
@@ -739,13 +748,19 @@
     {
         dispatch_async(dispatch_get_main_queue(), ^
         {
-            if ([((SGraphObjectNode *)resource).object boolValue])
-                [TGAppDelegateInstance presentMainController];
+            if ([((SGraphObjectNode *)resource).object boolValue]) {
+                if (self.delegate) {
+                    [self.delegate loginProfileController:self didLoginWithObject:nil];
+                } else {
+                    [TGAppDelegateInstance presentMainController];
+                }
+            }
             else
             {
                 if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
                 {
                     TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
+                    inactiveUserController.delegate = self;
                     [self.navigationController pushViewController:inactiveUserController animated:true];
                 }
             }
@@ -759,13 +774,19 @@
             
             dispatch_async(dispatch_get_main_queue(), ^
             {
-                if (activated)
-                    [TGAppDelegateInstance presentMainController];
+                if (activated) {
+                    if (self.delegate) {
+                        [self.delegate loginProfileController:self didLoginWithObject:nil];
+                    } else {
+                        [TGAppDelegateInstance presentMainController];
+                    }
+                }
                 else
                 {
                     if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
                     {
                         TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
+                        inactiveUserController.delegate = self;
                         [self.navigationController pushViewController:inactiveUserController animated:true];
                     }
                     else

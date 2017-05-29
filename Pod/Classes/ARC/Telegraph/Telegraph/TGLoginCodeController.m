@@ -41,7 +41,7 @@
 #import <MessageUI/MessageUI.h>
 #import "TGCommon.h"
 
-@interface TGLoginCodeController () <UITextFieldDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate>
+@interface TGLoginCodeController () <UITextFieldDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate, TGLoginProfileControllerDelegate>
 {
     bool _dismissing;
     bool _alreadyCountedDown;
@@ -107,6 +107,11 @@
         [self setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:TGLocalized(@"Common.Next") style:UIBarButtonItemStyleDone target:self action:@selector(nextButtonPressed)]];
     }
     return self;
+}
+
+- (void)loginProfileController:(TGLoginProfileController *)loginProfileController didLoginWithObject:(id)object
+{
+    [self.delegate loginCodeController:self didLoginWithObject:object];
 }
 
 - (void)dealloc
@@ -752,8 +757,13 @@
         {   
             if (resultCode == ASStatusSuccess)
             {
-                if ([[((SGraphObjectNode *)result).object objectForKey:@"activated"] boolValue])
-                    [TGAppDelegateInstance presentMainController];
+                if ([[((SGraphObjectNode *)result).object objectForKey:@"activated"] boolValue]) {
+                    if (self.delegate) {
+                        [self.delegate loginCodeController:self didLoginWithObject:nil];
+                    } else {
+                        [TGAppDelegateInstance presentMainController];
+                    }
+                }
             }
             else
             {
@@ -768,7 +778,9 @@
                     [TGAppDelegateInstance saveLoginStateWithDate:stateDate phoneNumber:_phoneNumber phoneCode:_phoneCode phoneCodeHash:_phoneCodeHash codeSentToTelegram:false firstName:nil lastName:nil photo:nil];
                     
                     errorText = nil;
-                    [self pushControllerRemovingSelf:[[TGLoginProfileController alloc] initWithShowKeyboard:_codeField.isFirstResponder phoneNumber:_phoneNumber phoneCodeHash:_phoneCodeHash phoneCode:_phoneCode]];
+                    TGLoginProfileController *loginProfileController = [[TGLoginProfileController alloc] initWithShowKeyboard:_codeField.isFirstResponder phoneNumber:_phoneNumber phoneCodeHash:_phoneCodeHash phoneCode:_phoneCode];
+                    loginProfileController.delegate = self;
+                    [self pushControllerRemovingSelf:loginProfileController];
                 }
                 else if (resultCode == TGSignInResultTokenExpired)
                 {

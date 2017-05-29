@@ -457,8 +457,13 @@
     {
         dispatch_async(dispatch_get_main_queue(), ^
         {
-            if ([((SGraphObjectNode *)resource).object boolValue])
-                [TGAppDelegateInstance presentMainController];
+            if ([((SGraphObjectNode *)resource).object boolValue]) {
+                if (self.delegate) {
+                    [self.delegate loginInactiveUserController:self didLoginWithObject:nil];
+                } else {
+                    [TGAppDelegateInstance presentMainController];
+                }
+            }
         });
     }
     else if ([path isEqualToString:@"/tg/contactListSynchronizationState"])
@@ -469,8 +474,13 @@
             
             dispatch_async(dispatch_get_main_queue(), ^
             {
-                if (activated)
-                    [TGAppDelegateInstance presentMainController];
+                if (activated) {
+                    if (self.delegate) {
+                        [self.delegate loginInactiveUserController:self didLoginWithObject:nil];
+                    } else {
+                        [TGAppDelegateInstance presentMainController];
+                    }
+                }
             });
         }
         else

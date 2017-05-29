@@ -10,8 +10,16 @@
 
 #import "ActionStage.h"
 
+@class TGLoginInactiveUserController;
+@protocol TGLoginInactiveUserControllerDelegate <NSObject>
+
+- (void)loginInactiveUserController:(TGLoginInactiveUserController *)loginInactiveUserController didLoginWithObject:(id)object;
+
+@end
+
 @interface TGLoginInactiveUserController : TGViewController <ASWatcher>
 
 @property (nonatomic, strong) ASHandle *actionHandle;
+@property (nonatomic, weak) id<TGLoginInactiveUserControllerDelegate> delegate;
 
 @end

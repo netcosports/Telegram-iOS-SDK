@@ -10,9 +10,18 @@
 
 #import "ActionStage.h"
 
+@class TGLoginProfileController;
+
+@protocol TGLoginProfileControllerDelegate <NSObject>
+
+- (void)loginProfileController:(TGLoginProfileController *)loginProfileController didLoginWithObject:(id)object;
+
+@end
+
 @interface TGLoginProfileController : TGViewController <ASWatcher>
 
 @property (nonatomic, strong) ASHandle *actionHandle;
+@property (nonatomic, weak) id<TGLoginProfileControllerDelegate> delegate;
 
 - (id)initWithShowKeyboard:(bool)showKeyboard phoneNumber:(NSString *)phoneNumber phoneCodeHash:(NSString *)phoneCodeHash phoneCode:(NSString *)phoneCode;
 
