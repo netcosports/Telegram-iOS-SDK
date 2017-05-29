@@ -111,8 +111,8 @@ static void printStartupCheckpoint(int index)
     mainLaunchTimestamp = currentTime;
 }
 
-TGAppDelegate *TGAppDelegateInstance = nil;
-TGTelegraph *telegraph = nil;
+TGAppDelegate *TGAppDelegateInstance = [TGAppDelegate new];
+TGTelegraph *telegraph = [TGTelegraph new];
 
 @interface TGAppDelegate () <AVAudioPlayerDelegate>
 {
@@ -306,8 +306,6 @@ static unsigned int overrideIndexAbove(__unused id self, __unused SEL _cmd)
     [ASActor registerActorClass:[TGImageDownloadActor class]];
     
     [TGInterfaceManager instance];
-    
-    telegraph = [[TGTelegraph alloc] init];
     
     printStartupCheckpoint(0);
     

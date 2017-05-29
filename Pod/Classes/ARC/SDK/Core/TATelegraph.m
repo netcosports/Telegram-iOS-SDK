@@ -13,6 +13,8 @@
 #import "MTRequest.h"
 #import "TGTelegraph.h"
 #import "ASCommon.h"
+#import "TGAppDelegate.h"
+#import "TGTelegramNetworking.h"
 @interface TATelegraph ()
 
 //-(instancetype)initWithApiId:(NSString *)apiID apiHash:(NSString *) apiHash datacenterAddress:(MTDatacenterAddress *)datacenterAddress;
@@ -66,6 +68,16 @@ static TATelegraph *sharedTelegraph;
         self.telegraph = [[TGTelegraph alloc] init];
         [self.telegraph setApiId:apiID];
         [self.telegraph setApiHash:apiHash];
+
+        [TGAppDelegateInstance loadSettings];
+
+        [ActionStageInstance() dispatchOnStageQueue:^{
+            [[TGTelegramNetworking instance] loadCredentials];
+
+            if (TGTelegraphInstance.clientUserId != 0) {
+                [TGTelegraphInstance processAuthorizedWithUserId:TGTelegraphInstance.clientUserId clientIsActivated:TGTelegraphInstance.clientIsActivated];
+            }
+        }];
     }
     return self;
 }
