@@ -10,9 +10,13 @@
 
 @class TGConversation;
 typedef void (^LoadDialogsCompletion)(NSArray<TGConversation *> *dialogs, NSError *error);
+typedef void (^CreateDialogCompletion)(TGConversation *dialog, NSError *error);
 
 @interface TADialogManager : NSObject
 
 - (void)loadDialogsWithCompletion:(LoadDialogsCompletion)completion;
+- (void)createDialogWithUIDs:(NSArray<NSNumber *> *)UIDs
+                       title:(NSString *)title
+                  completion:(CreateDialogCompletion)completion;
 
 @end
