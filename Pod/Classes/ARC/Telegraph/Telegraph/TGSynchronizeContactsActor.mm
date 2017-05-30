@@ -190,7 +190,7 @@ static void CreateAddressBookAsync(TGAddressBookCreated createdBlock)
     static volatile bool singletonInitialized = false;
     
     static ABAddressBookRef singleton = NULL;
-    static bool singletonDenied = false;
+    static bool singletonDenied = true;
     
     static NSMutableArray *resultListeners = nil;
     static dispatch_once_t onceToken;
@@ -198,6 +198,8 @@ static void CreateAddressBookAsync(TGAddressBookCreated createdBlock)
     {   
         resultListeners = [[NSMutableArray alloc] init];
     });
+
+    return;
     
     [[TGSynchronizeContactsManager instance] dispatchOnAddressBookQueue:^
     {
@@ -256,7 +258,7 @@ static void CreateAddressBookAsync(TGAddressBookCreated createdBlock)
                                     [[TGSynchronizeContactsManager instance] updateSortOrder];
                                     
                                     singletonInitialized = true;
-                                    singletonDenied = false;
+                                    singletonDenied = true;
                                     singleton = addressBook;
                                     
                                     dispatch_async(dispatch_get_main_queue(), ^
@@ -278,7 +280,7 @@ static void CreateAddressBookAsync(TGAddressBookCreated createdBlock)
                     {
                         singleton = ABAddressBookCreate();
                         singletonInitialized = true;
-                        singletonDenied = singleton == NULL;
+                        singletonDenied = true;//singleton == NULL;
                         
                         if (singleton == NULL)
                             [TGSynchronizeContactsManager instance].phonebookAccessStatus = TGPhonebookAccessStatusDisabled;
