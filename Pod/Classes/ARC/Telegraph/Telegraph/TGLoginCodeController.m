@@ -701,14 +701,14 @@
                     [TGAppDelegateInstance presentMainController];
                 }
             }
-            else
-            {
-                if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
-                {
-                    TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
-                    [self pushControllerRemovingSelf:inactiveUserController];
-                }
-            }
+//            else
+//            {
+//                if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
+//                {
+//                    TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
+//                    [self pushControllerRemovingSelf:inactiveUserController];
+//                }
+//            }
         });
     }
     else if ([path isEqualToString:@"/tg/contactListSynchronizationState"])
@@ -728,14 +728,14 @@
                         [TGAppDelegateInstance presentMainController];
                     }
                 }
-                else
-                {
-                    if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
-                    {
-                        TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
-                        [self pushControllerRemovingSelf:inactiveUserController];
-                    }
-                }
+//                else
+//                {
+//                    if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
+//                    {
+//                        TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
+//                        [self pushControllerRemovingSelf:inactiveUserController];
+//                    }
+//                }
             });
         }
     }

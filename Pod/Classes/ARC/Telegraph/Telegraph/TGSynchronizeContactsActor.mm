@@ -58,6 +58,11 @@
 
 void TGRequestAddressBookAccessWithCompletion(__unused ABAddressBookRef addressBook, ABAddressBookRequestAccessCompletionHandler completion)
 {
+    //We disable contacts synch as it is unneeded for now
+    dispatch_async(dispatch_get_main_queue(), ^{
+        completion(false, NULL);
+    });
+    return;
     if (true && iosMajorVersion() >= 7)
     {
 #if TARGET_IPHONE_SIMULATOR && false

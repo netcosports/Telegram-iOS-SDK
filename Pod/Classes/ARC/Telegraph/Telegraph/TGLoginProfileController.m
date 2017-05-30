@@ -755,15 +755,15 @@
                     [TGAppDelegateInstance presentMainController];
                 }
             }
-            else
-            {
-                if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
-                {
-                    TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
-                    inactiveUserController.delegate = self;
-                    [self.navigationController pushViewController:inactiveUserController animated:true];
-                }
-            }
+//            else
+//            {
+//                if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
+//                {
+//                    TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
+//                    inactiveUserController.delegate = self;
+//                    [self.navigationController pushViewController:inactiveUserController animated:true];
+//                }
+//            }
         });
     }
     else if ([path isEqualToString:@"/tg/contactListSynchronizationState"])
@@ -781,17 +781,17 @@
                         [TGAppDelegateInstance presentMainController];
                     }
                 }
-                else
-                {
-                    if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
-                    {
-                        TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
-                        inactiveUserController.delegate = self;
-                        [self.navigationController pushViewController:inactiveUserController animated:true];
-                    }
-                    else
-                        self.inProgress = false;
-                }
+//                else
+//                {
+//                    if (![[self.navigationController.viewControllers lastObject] isKindOfClass:[TGLoginInactiveUserController class]])
+//                    {
+//                        TGLoginInactiveUserController *inactiveUserController = [[TGLoginInactiveUserController alloc] init];
+//                        inactiveUserController.delegate = self;
+//                        [self.navigationController pushViewController:inactiveUserController animated:true];
+//                    }
+//                    else
+//                        self.inProgress = false;
+//                }
             });
         }
     }
