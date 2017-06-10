@@ -68,7 +68,10 @@ typedef enum {
 + (bool)useExperimentalRTL;
 
 @property (nonatomic, strong) NSMutableArray *associatedWindowStack;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @property (nonatomic, strong) UIPopoverController *associatedPopoverController;
+#pragma clang diagnostic pop
 
 @property (nonatomic) TGViewControllerStyle style;
 
@@ -129,7 +132,10 @@ typedef enum {
 - (bool)inPopover;
 - (bool)inFormSheet;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (UIPopoverController *)popoverController;
+#pragma clang diagnostic pop
 
 - (void)acquireRotationLock;
 - (void)releaseRotationLock;

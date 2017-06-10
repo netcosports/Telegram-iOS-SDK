@@ -25,7 +25,10 @@ typedef enum {
 
 @property (nonatomic) TGNavigationControllerPresentationStyle presentationStyle;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @property (nonatomic, weak) UIPopoverController *parentPopoverController;
+#pragma clang diagnostic pop
 
 + (TGNavigationController *)navigationControllerWithControllers:(NSArray *)controllers;
 + (TGNavigationController *)navigationControllerWithControllers:(NSArray *)controllers navigationBarClass:(Class)navigationBarClass;
