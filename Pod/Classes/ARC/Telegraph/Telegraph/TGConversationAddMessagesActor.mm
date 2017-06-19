@@ -43,7 +43,7 @@
     NSArray *messages = [options objectForKey:@"messages"];
     NSMutableDictionary *chats = [options objectForKey:@"chats"];
     bool doNotModifyDates = [options[@"doNotModifyDates"] boolValue];
-    
+
     if (messages == nil && chats.count != 0)
     {
         if ([chats respondsToSelector:@selector(allKeys)])
@@ -60,30 +60,30 @@
                 [[TGDatabase instance] addMessagesToConversation:nil conversationId:conversation.conversationId updateConversation:conversation dispatch:true countUnread:false];
             }
         }
-        
+
         [ActionStageInstance() actionCompleted:self.path result:nil];
-        
+
         return;
     }
-    
+
     int currentTime = (int)[[TGTelegramNetworking instance] globalTime];
-    
+
     bool playNotification = false;
     bool needsSound = false;
-    
+
     std::shared_ptr<std::map<int64_t, std::set<int> > > pProcessedUsersStoppedTyping(new std::map<int64_t, std::set<int> >());
 
     NSMutableDictionary *messagesByConversation = [[NSMutableDictionary alloc] init];
     std::set<int64_t> conversationsWithNotification;
-    
+
     std::map<int64_t, int> messageLifetimeByConversation;
-    
+
     int maxMid = 0;
-    
+
     for (TGMessage *message in messages)
     {
         TGMessage *storeMessage = message;
-        
+
         if (!message.outgoing && message.unread && message.toUid != message.fromUid)
         {
             if (message.mid < TGMessageLocalMidBaseline && message.actionInfo == nil)
@@ -101,7 +101,7 @@
                 }
             }
         }
-        
+
         int64_t conversationId = message.cid;
         NSNumber *nConversationId = [NSNumber numberWithLongLong:conversationId];
         NSMutableArray *array = [messagesByConversation objectForKey:nConversationId];
@@ -110,7 +110,7 @@
             array = [[NSMutableArray alloc] init];
             [messagesByConversation setObject:array forKey:nConversationId];
         }
-        
+
         if (message.date > currentTime - 20)
         {
             std::map<int64_t, std::set<int> >::iterator it = pProcessedUsersStoppedTyping->find(conversationId);
@@ -125,12 +125,12 @@
                 it->second.insert((int)message.fromUid);
             }
         }
-        
+
         if (conversationId <= INT_MIN)
         {
             if (messageLifetimeByConversation.find(conversationId) == messageLifetimeByConversation.end())
                 messageLifetimeByConversation[conversationId] = [TGDatabaseInstance() messageLifetimeForPeerId:conversationId];
-            
+
             if (message.mediaAttachments != nil)
             {
                 for (TGMediaAttachment *attachment in message.mediaAttachments)
@@ -141,17 +141,17 @@
                         if (actionAttachment.actionType == TGMessageActionEncryptedChatMessageLifetime)
                         {
                             messageLifetimeByConversation[conversationId] = [actionAttachment.actionData[@"messageLifetime"] intValue];
-                            
+
                             [TGDatabaseInstance() setMessageLifetimeForPeerId:conversationId encryptedConversationId:0 messageLifetime:[actionAttachment.actionData[@"messageLifetime"] intValue] writeToActionQueue:false];
-                            
+
                             [ActionStageInstance() dispatchResource:[[NSString alloc] initWithFormat:@"/tg/encrypted/messageLifetime/(%lld)", conversationId] resource:actionAttachment.actionData[@"messageLifetime"]];
                         }
-                        
+
                         break;
                     }
                 }
             }
-            
+
             if (!message.outgoing && messageLifetimeByConversation[conversationId] != 0 && message.layer < 17)
             {
                 storeMessage = [message copy];
@@ -170,22 +170,22 @@
                 storeMessage.messageLifetime = (int)MAX(minLifetime, (NSTimeInterval)messageLifetimeByConversation[conversationId]);
             }
         }
-        
+
         int mid = message.mid;
         if (!message.outgoing && mid < TGMessageLocalMidBaseline && mid > maxMid)
             maxMid = mid;
-        
+
         [array addObject:storeMessage];
     }
-    
+
     NSMutableArray *lastMessages = [[NSMutableArray alloc] init];
     TGMessage *lastIncomingMessage = nil;
     NSTimeInterval lastIncomingMessageDate = 0;
-    
+
     for (NSNumber *nConversationId in messagesByConversation)
     {
         NSArray *conversationMessages = [messagesByConversation objectForKey:nConversationId];
-        
+
         TGMessage *lastMessage = nil;
         NSTimeInterval lastMessageDate = 0;
         int minRemoteMid = INT_MAX;
@@ -193,19 +193,19 @@
         for (TGMessage *message in conversationMessages)
         {
             NSTimeInterval messageDate = message.date;
-            
+
             if (lastMessage == nil || messageDate > lastMessageDate || ((int)(lastMessageDate) == (int)(messageDate) && message.mid > lastMessage.mid))
             {
                 lastMessage = message;
                 lastMessageDate = messageDate;
             }
-            
+
             if (!message.outgoing && (lastIncomingMessage == nil || messageDate > lastIncomingMessageDate || ((int)(lastIncomingMessageDate) == (int)(messageDate) && message.mid > lastIncomingMessage.mid)))
             {
                 lastIncomingMessage = message;
                 lastIncomingMessageDate = messageDate;
             }
-            
+
             if (message.mid < TGMessageLocalMidBaseline)
             {
                 minRemoteMid = MIN(minRemoteMid, message.mid);
@@ -214,18 +214,18 @@
         }
         if (lastMessage != nil)
             [lastMessages addObject:lastMessage];
-        
+
         TGConversation *conversation = [chats objectForKey:nConversationId];
         [[TGDatabase instance] addMessagesToConversation:conversationMessages conversationId:[nConversationId longLongValue] updateConversation:conversation dispatch:true countUnread:true updateDates:!doNotModifyDates];
-        
+
         if (minRemoteMid <= maxRemoteMid)
             [TGDatabaseInstance() fillConversationHistoryHole:[nConversationId longLongValue] indexSet:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(minRemoteMid, maxRemoteMid - minRemoteMid)]];
-        
+
         [ActionStageInstance() dispatchResource:[NSString stringWithFormat:@"/tg/conversation/(%lld)/messages", [nConversationId longLongValue]] resource:[[SGraphObjectNode alloc] initWithObject:conversationMessages]];
     }
-    
+
     bool playChatSound = false;
-    
+
     if (playNotification)
     {
         playNotification = false;
@@ -244,7 +244,7 @@
             }
         }
     }
-    
+
     if (playNotification)
     {
         if (needsSound)
@@ -254,7 +254,7 @@
             [[TGInterfaceManager instance] displayBannerIfNeeded:lastIncomingMessage conversationId:lastIncomingMessage.cid];
         }
     }
-    
+
     dispatch_async([ActionStageInstance() globalStageDispatchQueue], ^
     {
         if (!pProcessedUsersStoppedTyping->empty())
@@ -268,7 +268,7 @@
             }
         }
     });
-    
+
     if (maxMid > 0)
     {
         [TGDatabaseInstance() updateLatestMessageId:maxMid applied:false completion:^(int greaterMidForSynchronization)
@@ -279,7 +279,7 @@
             }
         }];
     }
-    
+
     [ActionStageInstance() actionCompleted:self.path result:nil];
 }
 

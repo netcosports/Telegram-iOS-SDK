@@ -93,17 +93,17 @@
 - (void)navigateToConversationWithId:(int64_t)conversationId conversation:(TGConversation *)__unused conversation performActions:(NSDictionary *)performActions atMessage:(NSDictionary *)atMessage clearStack:(bool)clearStack openKeyboard:(bool)__unused openKeyboard animated:(bool)animated
 {
     [TGAppDelegateInstance.dialogListController selectConversationWithId:conversationId];
-    
+
     [self dismissBannerForConversationId:conversationId];
-    
+
     TGModernConversationController *conversationController = nil;
-    
+
     UINavigationController *containingNavigationController = nil;
     if (TGAppDelegateInstance.phoneMainViewController != nil)
         containingNavigationController = TGAppDelegateInstance.mainNavigationController;
     else
         containingNavigationController = (UINavigationController *)(TGAppDelegateInstance.tabletMainViewController.detailViewController);
-    
+
     for (UIViewController *viewController in containingNavigationController.viewControllers)
     {
         if ([viewController isKindOfClass:[TGModernConversationController class]])
@@ -120,14 +120,14 @@
             }
         }
     }
-    
+
     if (conversationController == nil || atMessage[@"mid"] != nil)
     {
         int conversationUnreadCount = [TGDatabaseInstance() unreadCountForConversation:conversationId];
         int globalUnreadCount = [TGDatabaseInstance() cachedUnreadCount];
-        
+
         conversationController = [[TGModernConversationController alloc] init];
-        
+
         if (conversationId <= INT_MIN)
         {
             int64_t encryptedConversationId = [TGDatabaseInstance() encryptedConversationIdForPeerId:conversationId];
@@ -159,13 +159,13 @@
             [companion setOthersUnreadCount:MAX(globalUnreadCount - conversationUnreadCount, 0)];
             conversationController.companion = companion;
         }
-        
+
         [conversationController.companion bindController:conversationController];
-        
+
         conversationController.shouldIgnoreAppearAnimationOnce = !animated;
         if (performActions[@"text"] != nil)
             [conversationController setInputText:performActions[@"text"] replace:false];
-        
+
         if (TGAppDelegateInstance.tabletMainViewController != nil)
         {
             if (containingNavigationController == nil)
@@ -197,16 +197,16 @@
         NSArray * sendFiles = performActions[@"sendFiles"];
         if ([forwardMessages count] != 0)
             [(TGGenericModernConversationCompanion *)conversationController.companion standaloneForwardMessages:performActions[@"forwardMessages"]];
-        
+
         if ([sendMessages count] != 0)
             [(TGGenericModernConversationCompanion *)conversationController.companion standaloneSendMessages:performActions[@"sendMessages"]];
-        
+
         if ([sendFiles count] != 0)
             [(TGGenericModernConversationCompanion *)conversationController.companion standaloneSendFiles:performActions[@"sendFiles"]];
-        
+
         if (performActions[@"text"] != nil)
             [conversationController setInputText:performActions[@"text"] replace:false];
-        
+
         if (containingNavigationController.topViewController != conversationController)
             [containingNavigationController popToViewController:conversationController animated:animated];
     }
@@ -219,7 +219,7 @@
         containingNavigationController = TGAppDelegateInstance.mainNavigationController;
     else
         containingNavigationController = (UINavigationController *)(TGAppDelegateInstance.tabletMainViewController.detailViewController);
-    
+
     for (UIViewController *viewController in containingNavigationController.viewControllers)
     {
         if ([viewController isKindOfClass:[TGModernConversationController class]])
@@ -233,7 +233,7 @@
             }
         }
     }
-    
+
     return nil;
 }
 
@@ -277,7 +277,7 @@
         containingNavigationController = TGAppDelegateInstance.mainNavigationController;
     else
         containingNavigationController = (UINavigationController *)(TGAppDelegateInstance.tabletMainViewController.detailViewController);
-    
+
     if (encryptedConversationId == 0)
     {
         TGTelegraphUserInfoController *userInfoController = [[TGTelegraphUserInfoController alloc] initWithUid:uid];
@@ -294,47 +294,48 @@
 {
     if (conversationId == 0)
         return;
-    
+
     TGGenericPeerMediaListModel *model = [[TGGenericPeerMediaListModel alloc] initWithPeerId:conversationId allowActions:conversationId > INT_MIN];
-    
+
     TGModernMediaListController *controller = [[TGModernMediaListController alloc] init];
     controller.model = model;
-    
+
     //TGPhotoGridController *photoController = [[TGPhotoGridController alloc] initWithConversationId:conversationId isEncrypted:conversationId <= INT_MIN];
     [navigationController pushViewController:controller animated:true];
 }
 
 - (void)displayBannerIfNeeded:(TGMessage *)message conversationId:(int64_t)conversationId
 {
+    return;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad || !TGAppDelegateInstance.bannerEnabled)
         return;
-    
+
     [ActionStageInstance() dispatchOnStageQueue:^
     {
         TGUser *user = [TGDatabaseInstance() loadUser:(int)message.fromUid];
         TGConversation *conversation = nil;
         if (conversationId < 0)
             conversation = [TGDatabaseInstance() loadConversationWithId:conversationId];
-        
+
         if (user != nil && (conversationId > 0 || conversation != nil))
         {
             dispatch_async(dispatch_get_main_queue(), ^
             {
                 if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive)
                     return;
-                
+
                 bool hasModalController = false;
-                
+
                 hasModalController = TGAppDelegateInstance.mainNavigationController.presentedViewController != nil;
-                
+
                 if (!hasModalController)
                 {
                     hasModalController = TGAppDelegateInstance.mainNavigationController.topViewController.presentedViewController != nil;
                 }
-                
+
                 if (hasModalController)
                     return;
-                
+
                 TGModernConversationController *conversationController = nil;
                 for (UIViewController *viewController in TGAppDelegateInstance.mainNavigationController.viewControllers)
                 {
@@ -355,16 +356,16 @@
 #ifdef DEBUG
                     //timeout = 50;
 #endif
-                    
+
                     NSMutableDictionary *users = nil;
-                    
+
                     if (message.mediaAttachments.count != 0)
                     {
                         users = [[NSMutableDictionary alloc] initWithCapacity:1];
-                        
+
                         if (user != nil)
                             [users setObject:user forKey:@"author"];
-                        
+
                         for (TGMediaAttachment *attachment in message.mediaAttachments)
                         {
                             if (attachment.type == TGActionMediaAttachmentType)
@@ -382,7 +383,7 @@
                                             if (subjectUser != nil)
                                                 [users setObject:subjectUser forKey:[[NSNumber alloc] initWithInt:subjectUser.uid]];
                                         }
-                                        
+
                                         break;
                                     }
                                     default:
@@ -391,13 +392,13 @@
                             }
                         }
                     }
-                    
+
                     [TGAppDelegateInstance displayNotification:@"message" timeout:timeout constructor:^UIView *(UIView *existingView)
                     {
                         TGMessageNotificationView *messageView = (TGMessageNotificationView *)existingView;
                         if (messageView == nil)
                             messageView = [[TGMessageNotificationView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
-                        
+
                         messageView.messageText = message.text;
                         messageView.authorUid = (int)message.fromUid;
                         messageView.conversationId = message.cid;
@@ -409,7 +410,7 @@
                         messageView.lastName = user.lastName;
                         messageView.isLocationNotification = false;
                         [messageView resetView];
-                        
+
                         return messageView;
                     } watcher:_actionHandle watcherAction:@"navigateToConversation" watcherOptions:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithLongLong:conversationId], @"conversationId", nil]];
                 }
@@ -432,12 +433,12 @@
 {
     if (!TGAppDelegateInstance.locationTranslationEnabled || peopleCount <= 0)
         return;
-    
+
     dispatch_async(dispatch_get_main_queue(), ^
     {
         if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive)
             return;
-        
+
         [TGAppDelegateInstance displayNotification:@"message" timeout:5 constructor:^UIView *(UIView *existingView)
         {
             TGMessageNotificationView *messageView = (TGMessageNotificationView *)existingView;
@@ -445,14 +446,14 @@
             {
                 messageView = [[TGMessageNotificationView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
             }
-            
+
             messageView.authorUid = 0;
             messageView.messageText = nil;
             messageView.avatarUrl = nil;
             messageView.titleText = peopleCount == 1 ? @"1 person nearby" : [[NSString alloc] initWithFormat:@"%d people are nearby", peopleCount];
             messageView.isLocationNotification = true;
             [messageView resetView];
-            
+
             return messageView;
         } watcher:_actionHandle watcherAction:@"navigateToPeopleNearby" watcherOptions:nil];
     });
@@ -464,25 +465,25 @@
     {
         if (TGAppDelegateInstance.contentWindow != nil)
             return;
-        
+
         int64_t conversationId = [[options objectForKey:@"conversationId"] longLongValue];
         if (conversationId == 0)
             return;
-        
+
         if (conversationId < 0)
         {
             if ([TGDatabaseInstance() loadConversationWithId:conversationId] == nil)
                 return;
         }
-        
+
         UIViewController *presentedViewController = nil;
         presentedViewController = [TGAppDelegateInstance.mainNavigationController presentedViewController];
-        
+
         if (presentedViewController != nil)
         {
             [TGAppDelegateInstance.mainNavigationController dismissViewControllerAnimated:true completion:nil];
         }
-        
+
         [self navigateToConversationWithId:conversationId conversation:nil animated:presentedViewController == nil];
     }
 }
