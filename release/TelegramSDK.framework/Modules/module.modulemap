@@ -1,0 +1,6 @@
+framework module TelegramSDK {
+  umbrella header "TelegramSDK.h"
+
+  export *
+  module * { export * }
+}

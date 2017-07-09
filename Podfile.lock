@@ -1,0 +1,18 @@
+PODS:
+  - BLContactsViewController (0.1.5)
+  - BLPhoneFormat (0.3.3)
+  - pop (1.0.10)
+
+DEPENDENCIES:
+  - BLContactsViewController
+  - BLPhoneFormat
+  - pop
+
+SPEC CHECKSUMS:
+  BLContactsViewController: bd831242afe1e3f9b2c1a72c4b9d615feef94def
+  BLPhoneFormat: cb1cad0532d90ce2c56ad1758628765e2018ca62
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+
+PODFILE CHECKSUM: e0c01195739b7ae2b94fb75bbb51dcae4928d57c
+
+COCOAPODS: 1.2.1
