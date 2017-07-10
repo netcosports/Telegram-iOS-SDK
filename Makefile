@@ -11,4 +11,3 @@ build: clean
 	xcodebuild -scheme TelegramSDK -workspace TelegramSDK.xcworkspace -configuration Release -arch x86_64 only_active_arch=no defines_module=yes -derivedDataPath "build" -sdk "iphonesimulator" build | bundle exec xcpretty
 	rsync -rtvu --delete "$(RESULT_PATH)/Release-iphonesimulator/$(FRAMEWORK).framework/" "build/$(FRAMEWORK).framework/"
 	lipo -create -output "build/$(FRAMEWORK).framework/$(FRAMEWORK)" "$(RESULT_PATH)/Release-iphoneos/$(FRAMEWORK).framework/$(FRAMEWORK)" "$(RESULT_PATH)/Release-iphonesimulator/$(FRAMEWORK).framework/$(FRAMEWORK)"
-	rsync -av build/$(FRAMEWORK).framework release
